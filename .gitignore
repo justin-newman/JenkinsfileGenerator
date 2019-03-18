@@ -1,0 +1,8 @@
+
+JenkinsFileGeneratorJenkinsfile
+
+JenkinsFileGenerator/obj/
+
+JenkinsFileGenerator/bin/
+
+\.vs/

@@ -1,1 +1,1 @@
-JenkinsfileGenerator
+jenkinsfilegenerator

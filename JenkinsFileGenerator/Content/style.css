@@ -1,0 +1,270 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-image: url(https://wallpapercave.com/wp/QGmM68K.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #111;
+}
+.right {
+  float: right;
+}
+.createButton{
+  padding: 10px;
+  background-color: #0ab4b4;
+  border-color: #0ab4b4;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: large;
+}
+
+.createSection {
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+    display: flex;
+    color: white;
+    box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, 0.5);
+}
+
+.info {
+  width: 25%;
+  background: rgba(20, 20, 20, 0.8);
+  padding: 30px 0;
+  border-right: 5px solid rgba(30, 30, 30, 0.8);
+}
+.info h2 {
+  padding-top: 30px;
+  font-weight: 300;
+}
+.info p {
+  font-size: 18px;
+}
+.info .icon {
+  font-size: 8em;
+  padding: 20px 0;
+  color: #0ab4b4;
+}
+
+.createForm {
+  width: 75%;
+  padding: 30px 0;
+  background: rgba(20, 40, 40, 0.8);
+  transition: .2s;
+}
+.createForm h2 {
+  font-weight: 300;
+  color: "lightgray"
+}
+
+.inputFields {
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #0ab4b4;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+}
+
+option:not(first-child) {
+    color: #000;
+}
+
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
+
+#create-btn {
+  border: 1px solid #0ab4b4;
+  background: rgba(20, 20, 20, 0.6);
+  font-size: 18px;
+  color: white;
+  margin-top: 20px;
+  padding: 10px 35px;
+  cursor: pointer;
+  transition: .4s;
+  float: right;
+  margin-right: 35px;
+}
+/* #create-btn:hover {
+  background: rgba(20, 20, 20, 0.8);
+  padding: 10px 80px;
+} */
+.row {
+  display: flex;
+}
+
+/* .column {
+  flex: 50%;
+} */
+
+
+/* TOGGLE FOR RADIO BUTTONS */
+.switch-field {
+  font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+  overflow: hidden;
+  margin-right:25px;
+}
+
+.switch-title {
+  margin-bottom: 6px;
+}
+
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+  float: left;
+}
+
+.switch-field label {
+  display: inline-block;
+  width: 60px;
+  background-color: #e4e4e4;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: none;
+  padding: 6px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition:    all 0.1s ease-in-out;
+  -ms-transition:     all 0.1s ease-in-out;
+  -o-transition:      all 0.1s ease-in-out;
+  transition:         all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  background-color: #0ab4b4;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+
+
+
+
+/* CHECKBOX TOGGLES */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0 0 2px #0ab4b4;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked ~ .slider {
+  background-color: #0ab4b4;
+}
+
+input:checked ~ .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+    input:checked ~ .slider.round:before {
+        background-color: #2f3e42;
+    }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+        background-color: #0ab4b4
+    }
+
+label, input {
+  /* in order to define widths */
+  display: inline-block;
+}
+
+label {
+  width: 30%;
+  /* positions the label text beside the input */
+  text-align: right;
+}
+
+label + input {
+  width: 30%;
+  /* large margin-right to force the next element to the new-line
+     and margin-left to create a gutter between the label and input */
+  margin: 0 30% 0 4%;
+}
+
+/* only the submit button is matched by this selector,
+ but to be sure you could use an id or class for that button */
+input + input {
+  float: right;
+}
+
+.fa-jenkins {
+    color: #0ab4b4;
+}

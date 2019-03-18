@@ -1,0 +1,70 @@
+node {
+	stage 'Checkout'
+		checkout scm
+            stage 'Build'
+             bat 'c:\\tools\\nuget.exe restore mao.sln'
+             bat '"C:\\Program Files (x86)\\MSBuild\\14.0\\Bin\\MSBuild.exe" mao.sln /p:Configuration=Release /p:Platform=\"Any CPU\" '
+ 	stage 'Unit Test Report'
+		echo 'Generating test Unit Test Report'
+		step([$class: 'XUnitPublisher', testTimeMargin: '3000', thresholdMode: 1,
+			tools: [[$class: 'NUnitJunitHudsonTestType', deleteOutputFiles: true, 
+			failIfNotNew: true, pattern: '**/*testTestResults.xml',
+			skipNoTestFiles: false, stopProcessingIfError: true]]])
+		echo 'Done Generating test Unit Test Report'
+		echo 'Generating  Unit Test Report'
+		step([$class: 'XUnitPublisher', testTimeMargin: '3000', thresholdMode: 1,
+			tools: [[$class: 'NUnitJunitHudsonTestType', deleteOutputFiles: true, 
+			failIfNotNew: true, pattern: '**/*TestResults.xml',
+			skipNoTestFiles: false, stopProcessingIfError: true]]])
+		echo 'Done Generating  Unit Test Report'
+		echo 'Generating  Unit Test Report'
+		step([$class: 'XUnitPublisher', testTimeMargin: '3000', thresholdMode: 1,
+			tools: [[$class: 'NUnitJunitHudsonTestType', deleteOutputFiles: true, 
+			failIfNotNew: true, pattern: '**/*TestResults.xml',
+			skipNoTestFiles: false, stopProcessingIfError: true]]])
+		echo 'Done Generating  Unit Test Report'
+		echo 'Generating  Unit Test Report'
+		step([$class: 'XUnitPublisher', testTimeMargin: '3000', thresholdMode: 1,
+			tools: [[$class: 'NUnitJunitHudsonTestType', deleteOutputFiles: true, 
+			failIfNotNew: true, pattern: '**/*TestResults.xml',
+			skipNoTestFiles: false, stopProcessingIfError: true]]])
+		echo 'Done Generating  Unit Test Report'
+		echo 'Generating  Unit Test Report'
+		step([$class: 'XUnitPublisher', testTimeMargin: '3000', thresholdMode: 1,
+			tools: [[$class: 'NUnitJunitHudsonTestType', deleteOutputFiles: true, 
+			failIfNotNew: true, pattern: '**/*TestResults.xml',
+			skipNoTestFiles: false, stopProcessingIfError: true]]])
+		echo 'Done Generating  Unit Test Report'
+ 	stage 'Code Coverage Report'
+	 	echo 'Generating Code Coverage Report'
+		bat '"C:\\Tools\\opencover\\OpenCover.Console.exe" -target:".\\packages\\xunit.runner.console.2.1.0\\tools\\xunit.console.exe" -coverbytest:XUnit -filter:"+[*]* -[*.tests]* -[*.Tests]*" -targetargs:".\\test.Tests\\bin\\Release\\test.Tests.dll -nunit testTestResults.xml" -searchdirs:".\\test\\bin" -output:.\\testCoverage.xml -register:Path64'
+		bat '"C:\\Tools\\reportgenerator\\ReportGenerator.exe" -reports:"testCoverage.xml" -targetDir:CodeCoverageHTML -assemblyfilters:"-[*.tests]* -[*.Tests]*"'
+		echo 'Publishing Code Coverage Report'
+		bat '"C:\\Tools\\opencover_to_cobertura_converter\\OpenCoverToCoberturaConverter.exe" -input:"testCoverage.xml" -output:"maoCobertura.xml" -sources:%WORKSPACE%'
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'CodeCoverageHTML', reportFiles: 'index.htm', reportName: 'mao Code Coverage'])
+	 	echo 'Generating Code Coverage Report'
+		bat '"C:\\Tools\\opencover\\OpenCover.Console.exe" -target:".\\packages\\xunit.runner.console.2.1.0\\tools\\xunit.console.exe" -coverbytest:XUnit -filter:"+[*]* -[*.tests]* -[*.Tests]*" -targetargs:".\\.Tests\\bin\\Release\\.Tests.dll -nunit TestResults.xml" -searchdirs:".\\\\bin" -output:.\\Coverage.xml -register:Path64'
+		bat '"C:\\Tools\\reportgenerator\\ReportGenerator.exe" -reports:"Coverage.xml" -targetDir:CodeCoverageHTML -assemblyfilters:"-[*.tests]* -[*.Tests]*"'
+		echo 'Publishing Code Coverage Report'
+		bat '"C:\\Tools\\opencover_to_cobertura_converter\\OpenCoverToCoberturaConverter.exe" -input:"Coverage.xml" -output:"maoCobertura.xml" -sources:%WORKSPACE%'
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'CodeCoverageHTML', reportFiles: 'index.htm', reportName: 'mao Code Coverage'])
+	 	echo 'Generating Code Coverage Report'
+		bat '"C:\\Tools\\opencover\\OpenCover.Console.exe" -target:".\\packages\\xunit.runner.console.2.1.0\\tools\\xunit.console.exe" -coverbytest:XUnit -filter:"+[*]* -[*.tests]* -[*.Tests]*" -targetargs:".\\.Tests\\bin\\Release\\.Tests.dll -nunit TestResults.xml" -searchdirs:".\\\\bin" -output:.\\Coverage.xml -register:Path64'
+		bat '"C:\\Tools\\reportgenerator\\ReportGenerator.exe" -reports:"Coverage.xml" -targetDir:CodeCoverageHTML -assemblyfilters:"-[*.tests]* -[*.Tests]*"'
+		echo 'Publishing Code Coverage Report'
+		bat '"C:\\Tools\\opencover_to_cobertura_converter\\OpenCoverToCoberturaConverter.exe" -input:"Coverage.xml" -output:"maoCobertura.xml" -sources:%WORKSPACE%'
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'CodeCoverageHTML', reportFiles: 'index.htm', reportName: 'mao Code Coverage'])
+	 	echo 'Generating Code Coverage Report'
+		bat '"C:\\Tools\\opencover\\OpenCover.Console.exe" -target:".\\packages\\xunit.runner.console.2.1.0\\tools\\xunit.console.exe" -coverbytest:XUnit -filter:"+[*]* -[*.tests]* -[*.Tests]*" -targetargs:".\\.Tests\\bin\\Release\\.Tests.dll -nunit TestResults.xml" -searchdirs:".\\\\bin" -output:.\\Coverage.xml -register:Path64'
+		bat '"C:\\Tools\\reportgenerator\\ReportGenerator.exe" -reports:"Coverage.xml" -targetDir:CodeCoverageHTML -assemblyfilters:"-[*.tests]* -[*.Tests]*"'
+		echo 'Publishing Code Coverage Report'
+		bat '"C:\\Tools\\opencover_to_cobertura_converter\\OpenCoverToCoberturaConverter.exe" -input:"Coverage.xml" -output:"maoCobertura.xml" -sources:%WORKSPACE%'
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'CodeCoverageHTML', reportFiles: 'index.htm', reportName: 'mao Code Coverage'])
+	 	echo 'Generating Code Coverage Report'
+		bat '"C:\\Tools\\opencover\\OpenCover.Console.exe" -target:".\\packages\\xunit.runner.console.2.1.0\\tools\\xunit.console.exe" -coverbytest:XUnit -filter:"+[*]* -[*.tests]* -[*.Tests]*" -targetargs:".\\.Tests\\bin\\Release\\.Tests.dll -nunit TestResults.xml" -searchdirs:".\\\\bin" -output:.\\Coverage.xml -register:Path64'
+		bat '"C:\\Tools\\reportgenerator\\ReportGenerator.exe" -reports:"Coverage.xml" -targetDir:CodeCoverageHTML -assemblyfilters:"-[*.tests]* -[*.Tests]*"'
+		echo 'Publishing Code Coverage Report'
+		bat '"C:\\Tools\\opencover_to_cobertura_converter\\OpenCoverToCoberturaConverter.exe" -input:"Coverage.xml" -output:"maoCobertura.xml" -sources:%WORKSPACE%'
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'CodeCoverageHTML', reportFiles: 'index.htm', reportName: 'mao Code Coverage'])
+
+ }

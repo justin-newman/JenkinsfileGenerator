@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkinsfile Generator</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css'>
+    <script defer src="https://cmnhcdnstorage.blob.core.windows.net/scripts/fontawesome-pro/5.4.1/brands.js"></script>
+    <script defer src="https://cmnhcdnstorage.blob.core.windows.net/scripts/fontawesome-pro/5.4.1/fontawesome.js"></script>
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+       <!-- <hr />
+         <footer>
+            <p>&copy; @DateTime.Now.Year Children’s Miracle Network Hospitals, a not-for-profit, section 501(c)(3)</p>
+        </footer> -->
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("JavaScript", required: false)
+</body>
+</html>
