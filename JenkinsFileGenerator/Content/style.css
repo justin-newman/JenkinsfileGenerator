@@ -5,16 +5,15 @@
 
 body {
     background-image: url(https://wallpapercave.com/wp/QGmM68K.jpg);
-    background-size: 100%;
+    background-size: cover;
+    height: 100vh;
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #111;
 }
-.right {
-  float: right;
-}
+
 .createButton{
   padding: 10px;
   background-color: #0ab4b4;
@@ -25,22 +24,16 @@ body {
 }
 
 .createSection {
-    width: 80%;
-    margin-left: 10%;
     text-align: center;
-    display: flex;
     color: white;
     box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, 0.5);
 }
 
 .info {
-  width: 25%;
   background: rgba(20, 20, 20, 0.8);
-  padding: 30px 0;
   border-right: 5px solid rgba(30, 30, 30, 0.8);
 }
 .info h2 {
-  padding-top: 30px;
   font-weight: 300;
 }
 .info p {
@@ -48,26 +41,21 @@ body {
 }
 .info .icon {
   font-size: 8em;
-  padding: 20px 0;
   color: #0ab4b4;
 }
 
 .createForm {
-  width: 75%;
-  padding: 30px 0;
   background: rgba(20, 40, 40, 0.8);
   transition: .2s;
 }
 .createForm h2 {
   font-weight: 300;
-  color: "lightgray"
+  color: lightgray;
 }
 
 .inputFields {
-  margin: 15px 0;
   font-size: 16px;
   padding: 10px;
-  width: 250px;
   border: 1px solid #0ab4b4;
   border-top: none;
   border-left: none;
@@ -81,30 +69,28 @@ option:not(first-child) {
     color: #000;
 }
 
-.noBullet {
-  list-style-type: none;
-  padding: 0;
-}
-
 #create-btn {
-  border: 1px solid #0ab4b4;
-  background: rgba(20, 20, 20, 0.6);
-  font-size: 18px;
-  color: white;
-  margin-top: 20px;
-  padding: 10px 35px;
-  cursor: pointer;
-  transition: .4s;
-  float: right;
-  margin-right: 35px;
+    border: 1px solid rgba(10, 180, 180, 1);
+    border-radius: 10px;
+    background: rgba(20, 20, 20, 0.4);
+    font-size: 18px;
+    color: white;
+    padding: 10px 35px;
+    cursor: pointer;
+    transition: .4s;
+    float: right;
+    height: 100%;
 }
-/* #create-btn:hover {
-  background: rgba(20, 20, 20, 0.8);
-  padding: 10px 80px;
-} */
-.row {
-  display: flex;
-}
+    #create-btn:hover {
+        background: rgba(10, 180, 180, 1);
+        text-shadow: 0 2px 2px white;
+        box-shadow: 0 -5px 2px 3px #0ab4b4, 0 3px 5px rgba(10, 180, 180, 1), 0 0 0 2px rgba(10, 180, 180, 1), inset 0 -3px 1px 2px rgba(10, 180, 180, 1), inset 0 3px 1px 2px rgba(10, 180, 180, 1);
+    }
+    #create-btn:active {
+        background: rgba(0, 0, 0, 1);
+        border: 1px solid #000;
+        box-shadow: unset;
+    }
 
 /* .column {
   flex: 50%;
@@ -129,10 +115,6 @@ option:not(first-child) {
     width: 1px;
     border: 0;
     overflow: hidden;
-}
-
-.switch-field label {
-  float: left;
 }
 
 .switch-field label {
@@ -240,24 +222,6 @@ input:checked ~ .slider:before {
         border-radius: 50%;
         background-color: #0ab4b4
     }
-
-label, input {
-  /* in order to define widths */
-  display: inline-block;
-}
-
-label {
-  width: 30%;
-  /* positions the label text beside the input */
-  text-align: right;
-}
-
-label + input {
-  width: 30%;
-  /* large margin-right to force the next element to the new-line
-     and margin-left to create a gutter between the label and input */
-  margin: 0 30% 0 4%;
-}
 
 /* only the submit button is matched by this selector,
  but to be sure you could use an id or class for that button */

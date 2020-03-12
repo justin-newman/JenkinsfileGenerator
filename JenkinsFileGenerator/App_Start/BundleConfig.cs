@@ -24,7 +24,10 @@ namespace JenkinsFileGenerator
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/style.css"
+                      "~/Content/style.css",
+                      "~/Content/bootstrap-grid.css",
+                      "~/Content/bootstrap-reboot.css",
+                      "~/Content/bootstrap.css"
                       ));
         }
     }

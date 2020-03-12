@@ -7,8 +7,9 @@ namespace JenkinsFileGenerator.Models
 {
     public enum RepositoryType
     {
-        DotNetCore,
-        FullFramework,
+        //DotNetCore,
+        //FullFramework,
+        Web,
         Ssrs
     }
 }

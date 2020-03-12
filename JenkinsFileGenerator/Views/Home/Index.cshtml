@@ -4,120 +4,76 @@
 @{
     ViewBag.Title = "Home Page";
 }
-@section Javascript 
-{
-    <script type="text/javascript">
-            var $frameworkVersion = $("#frameworkVersion");
-            var $rbFalse = $("#rbFalse");
-            var $rbTrue = $("#rbTrue");
 
-            function hideTextField() {
-                if ($rbFalse.is(':checked')) {
-                    $frameworkVersion.hide();
-                    $frameworkVersion.children('#FrameworkVersion').prop('required', false);
-                }
-                else if ($rbTrue.is(':checked')) {
-                    $frameworkVersion.show();
-                    $frameworkVersion.children('#FrameworkVersion').prop('required', true);
-                }
-            }
 
-            $rbTrue.on("change", hideTextField);
-            $rbFalse.on("change", hideTextField);
-
-            hideTextField();
-    </script>
-}
-  <div class="createSection">
-  <div class="info">
-    <h2>Jenkinsfile Generator</h2>
-    <i class="fab fa-jenkins fa-10x"></i>
-    <p></p>
-  </div>
-  <form action="#" method="POST" class="createForm" name="createform">
+<div class="createSection d-flex">
+    <div class="info">
+        <h2 class="m-3">Jenkinsfile Generator</h2>
+        <i class="fab fa-jenkins fa-10x"></i>
+        <p></p>
+    </div>
+    <form action="#" method="POST" class="createForm" name="createform">
 
 @using (Html.BeginForm("index", "Home", FormMethod.Post, new { @class = "createForm"}))
 {
-    <ul class="noBullet">
-        <div class="flex">
-            <div class="row">
-                <div class="column">
-                    <h2>Project Information</h2>
-                    <div id="repositoryType">
-                        <div>
-                            @Html.LabelFor(m => m.RepoType)
-                            @Html.DropDownListFor(m => m.RepoType, Enum.GetValues(typeof(RepositoryType)).Cast<RepositoryType>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), new { @class = "inputFields" })<span class="formAsterix">*</span>
+            <div class="row p-3">
+
+
+                <div class="col-7">
+                        <h2 class="text-center">Project Information</h2>
+                        <div id="repositoryType" class="form-group row justify-content-center m-3">
+                                @Html.LabelFor(m => m.RepoType, new { @class = "col-sm-10 col-form-label text-justify" })
+                                @Html.DropDownListFor(m => m.RepoType, Enum.GetValues(typeof(RepositoryType)).Cast<RepositoryType>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), new { @class = "inputFields col-sm-9" })
+                                <span class="">*</span>
                         </div>
-                    </div>
-                    <div id="solutionName">
-                        @Html.LabelFor(m => m.solutionName)
-                        @Html.TextBoxFor(m => m.solutionName, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.solutionName, "")
-                    </div>
-                    <div id="project">
-                        <label>Project Name</label>
-                        @Html.TextBoxFor(m => m.project, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.project, "")
-                    </div>
-                    <div id="pipelineName">
-                        @Html.LabelFor(m => m.pipelineName)
-                        @Html.TextBoxFor(m => m.pipelineName, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.pipelineName, "")
-                    </div>
-                    <div id="octopusProjectName">
-                        @Html.LabelFor(m => m.OctopusProjectName)
-                        @Html.TextBoxFor(m => m.OctopusProjectName, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.OctopusProjectName, "")
-                    </div>
-                    <div id="xunitVersion">
-                        @Html.LabelFor(m => m.xunitVersion)
-                        @Html.TextBoxFor(m => m.xunitVersion, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.xunitVersion, "")
-                    </div>
-                    <div id="agent">
-                        @Html.LabelFor(m => m.agent)
-                        @Html.TextBoxFor(m => m.agent, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.agent, "")
-                    </div>
-                    <div id="frameworkVersion">
-                        @Html.LabelFor(m => m.FrameworkVersion)
-                        @Html.TextBoxFor(m => m.FrameworkVersion, new { @class = "inputFields" })<span class="formAsterix">*</span>
-                        @Html.ValidationMessageFor(m => m.FrameworkVersion, "")
-                    </div>
+                        <div id="agent" class="form-group row justify-content-center m-3">
+                            @Html.LabelFor(m => m.agent, new { @class = "col-sm-10 col-form-label text-justify" })
+                            @Html.TextBoxFor(m => m.agent, new { @class = "inputFields col-sm-9" })
+                            <span class="formAsterix">*</span>
+                            @Html.ValidationMessageFor(m => m.agent, "")
+                        </div>
+                        <div id="project" class="form-group row justify-content-center m-3">
+                            <label class="col-sm-10 col-form-label text-justify">Project Name</label>
+                            @Html.TextBoxFor(m => m.project, new { @class = "inputFields col-sm-9" })<span class="formAsterix">*</span>
+                            @Html.ValidationMessageFor(m => m.project, "")
+                        </div>
+                        <div id="octopusProjectName" class="form-group row justify-content-center m-3">
+                            @Html.LabelFor(m => m.OctopusProjectName, new { @class = "col-sm-10 col-form-label text-justify" })
+                            @Html.TextBoxFor(m => m.OctopusProjectName, new { @class = "inputFields col-sm-9" })<span class="formAsterix">*</span>
+                            @Html.ValidationMessageFor(m => m.OctopusProjectName, "")
+                        </div>
+                        <h2 class="text-center">File Information</h2>
+                        <div id="jenkinsfileName" class="form-group row justify-content-center m-3">
+                            <label class="col-sm-10 col-form-label text-justify">Filename</label>
+                            @Html.TextBoxFor(m => m.jenkinsfileName, new { @class = "inputFields col-sm-9" })<span class="formAsterix">*</span>
+                            @Html.ValidationMessageFor(m => m.jenkinsfileName, "")
+                        </div>
+
                 </div>
-<div class="column">
 
-            <h2>Build Information</h2>
-            @Html.LabelFor(m => m.gulpTask)
-            <label class="switch">
-            @Html.CheckBoxFor(m => m.gulpTask)
-            <span class="slider round"></span>
-            </label>
-            <br />
-            <br />
-            @Html.LabelFor(m => m.skipTests)
-            <label class="switch">
-            @Html.CheckBoxFor(m => m.skipTests)
-            <span class="slider round"></span>
-            </label>
-            <div  id="deployToLocation">
-                @Html.LabelFor(m => m.deployToLocation)
-                @Html.TextBoxFor(m => m.deployToLocation, new { @class = "inputFields"})<span class="formAsterix">*</span>
-                @Html.ValidationMessageFor(m => m.deployToLocation, "")
+                <div class="col-5 d-flex flex-column justify-content-between">
+                        <div class="">
+                            <h2>Build Information</h2>
+                            @Html.LabelFor(m => m.skipTests, new { @class = "col-sm-12 col-form-label" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(m => m.skipTests)
+                                <span class="slider round"></span>
+                            </label>
+                            <br />
+                            <br />
+                            @Html.LabelFor(m => m.automatedTests, new { @class = "col-sm-12 col-form-label" })
+                            <label class="switch">
+                                @Html.CheckBoxFor(m => m.automatedTests)
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <button id="create-btn" class="m-3">Generate Jenkinsfile</button>
+                </div>
+
+
+
             </div>
-        <div class="col-md-9" id="jenkinsfileName" style="text-align:center">
-            @Html.LabelFor(m => m.jenkinsfileName)
-            @Html.TextBoxFor(m => m.jenkinsfileName, new { @class = "inputFields"})<span class="formAsterix">*</span>
-            @Html.ValidationMessageFor(m => m.jenkinsfileName, "")
-            <br />
-    </div>
-            <button id="create-btn">Generate Jenkinsfile</button>
-        </div>
-</div>
-</div>
-    </ul>
+
 }
-
-
-  </form>
+    </form>
 </div>

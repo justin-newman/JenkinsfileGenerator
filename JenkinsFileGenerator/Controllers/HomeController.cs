@@ -21,7 +21,7 @@ namespace JenkinsFileGenerator.Controllers
                 xunitVersion = "2.4.1",
                 agent = "any",
                 deployToLocation = "Azure - Test",
-                jenkinsfileName = "Jenkinsfile"
+                jenkinsfileName = "Jenkinsfile.jenkins"
             };
             return View(model);
         }
@@ -31,23 +31,23 @@ namespace JenkinsFileGenerator.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 var repo = StringCreatorFactory.Create((RepositoryType)model.RepoType);
 
                 var filetext = new StringBuilder();
 
                 filetext.Append($"{repo.BaseStart(model.agent)}");
                 filetext.Append($"{repo.Checkout()}");
-                if (model.gulpTask)
-                    filetext.Append($"{repo.NodeInstallAndBuild()}");
-                filetext.Append($"{repo.Build(model.solutionName)}");
+                filetext.Append($"{repo.NuGet(model.solutionName, model.project)}");
                 if (!model.skipTests)
-                    filetext.Append($"{repo.TestsAndCoverage(model.project, model.xunitVersion, model.FrameworkVersion)}");
+                    filetext.Append($"{repo.TestsAndCoverage(model.project, model.xunitVersion, model.FrameworkVersion, model.OctopusProjectName)}");
                 filetext.Append($"{repo.DevAudit(model.project)}");
-                filetext.Append($"{repo.DeployTo(model.solutionName, model.pipelineName, model.project, model.deployToLocation, model.OctopusProjectName, model.FrameworkVersion)}");
-                //TODO: filetext.Append($"{repo.WebdriverIO()}");
+                filetext.Append($"{repo.Deploy(model.solutionName, model.pipelineName, model.project, model.deployToLocation, model.OctopusProjectName, model.FrameworkVersion)}");
+                if (model.automatedTests)
+                    filetext.Append($"{repo.WebdriverIO()}");
                 filetext.Append($"{repo.BaseEnd()}");
                 filetext.Append($"{repo.PostBuildStart()}");
+                if (model.automatedTests)
+                    filetext.Append($"{repo.PostBuildAlways(model.OctopusProjectName)}");
                 filetext.Append($"{repo.PostBuildSuccess()}");
                 filetext.Append($"{repo.PostBuildFailure()}");
                 filetext.Append($"{repo.PostBuildEnd()}");

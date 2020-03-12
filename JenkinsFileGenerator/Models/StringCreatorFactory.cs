@@ -11,23 +11,12 @@ namespace JenkinsFileGenerator.Models
         {
             switch (repositoryType)
             {
-                case RepositoryType.DotNetCore: return new StringCreatorNetCoreRepository();
-                case RepositoryType.FullFramework: return new StringCreatorFullFrameworkRepository();
+                //case RepositoryType.DotNetCore: return new StringCreatorNetCoreRepository();
+                //case RepositoryType.FullFramework: return new StringCreatorFullFrameworkRepository();
+                case RepositoryType.Web: return new StringCreatorWebRepository();
                 case RepositoryType.Ssrs: return new StringCreatorSSRSRepository();
                 default: throw new Exception($"Repository type {repositoryType} not supported");
             }
         }
-        //public static IStringCreatorRepository Create(bool isDotNetCore, bool IsSSRS)
-        //{
-        //    if (isDotNetCore && !IsSSRS)
-        //        return new StringCreatorNetCoreRepository();
-        //    else if (!isDotNetCore && !IsSSRS)
-        //        return new StringCreatorFullFrameworkRepository();
-        //    else if (!isDotNetCore && IsSSRS)
-        //        return new StringCreatorSSRSRepository();
-        //    else
-        //        throw new Exception($"Both IsDotNetCore and IsSSRS cannot be true");
-
-        //}
     }
 }

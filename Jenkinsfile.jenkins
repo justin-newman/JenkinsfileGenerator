@@ -23,15 +23,6 @@ pipeline {
                     }
                 }
             }
-
-            stage ('DevAudit') {
-                steps {
-                    dir ("C:\\Tools\\DevAudit") {
-                        bat 'devaudit aspnet --non-interactive -r "%WORKSPACE%\\JenkinsFileGenerator" -m "JenkinsFileGenerator" -c @web.config --list-packages'
-                        bat 'devaudit aspnet --non-interactive -r "%WORKSPACE%\\JenkinsFileGenerator" -m "JenkinsFileGenerator" -c @web.config'
-                    }
-                }
-            }
             stage ('Deploy JenkinsFileGenerator to Azure - Production') {
                 steps {
                     timeout(time: 10, unit: 'MINUTES') {
